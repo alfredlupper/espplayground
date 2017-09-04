@@ -1,1 +1,2 @@
 http://pv.lupper.de/solar_api/v1/GetInverterRealtimeData.cgi?Scope=System
+$$.Body.Data.PAC.Values[1];
