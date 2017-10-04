@@ -20,7 +20,8 @@ while (WiFi.status() != WL_CONNECTED) {
       digitalWrite(redLEDpin, 0);  // red LED ON für 2 Sekunden
       delay(2000);
       digitalWrite(redLEDpin, 1);    
-      ESP.deepSleep(1000000 * SleepTime)  
+      ESP.deepSleep(1000000 * SleepTime);
+      delay(100);
   }    
   timout++;;
   WiFi.setAutoReconnect(true);
