@@ -23,7 +23,8 @@ while (WiFi.status() != WL_CONNECTED) {
       ESP.deepSleep(1000000 * SleepTime);
       delay(100);
   }    
-  timout++;;
+  timout++;
+ }
   WiFi.setAutoReconnect(true);
       Serial.println(F("WiFi connected"));
       Serial.println(F("IP address: "));
@@ -33,5 +34,4 @@ while (WiFi.status() != WL_CONNECTED) {
       digitalWrite(greenLEDpin, 0);  // green LED ON für 2 Sekunden
       delay(2000);
       digitalWrite(greenLEDpin, 1);
-  }
 }     
