@@ -14,6 +14,7 @@
 #define Sensor_PIN 5 // Pin der an Reedkontackt angeschlossen ist
 
 #define Maxtimeout 60
+
 const int sleepSeconds = 60;
 int timout = 0;
 
@@ -27,6 +28,7 @@ void setup() {
     Serial.setTimeout(2000);
     // Wait for serial to initialize.
      while(!Serial) { }
+    Serial.println();
     Serial.println("I'm awake.");
 
   //------------------------------------ Im Station Modus mit Netzwerk verbinden -------------------------------------------
