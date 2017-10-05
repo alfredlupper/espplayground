@@ -11,12 +11,11 @@
 
 #define greenLEDpin D6   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
 #define redLEDpin D8   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
-#define Maxtimeout 60
+#define Sensor_PIN 5 // Pin der an Reedkontackt angeschlossen ist
 
+#define Maxtimeout 60
 const int sleepSeconds = 60;
 int timout = 0;
-
-#define Sensor_PIN 5 // Pin der an Reedkontackt angeschlossen ist
 
 Ubidots client(TOKEN);
 
