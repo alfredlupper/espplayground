@@ -45,7 +45,7 @@ while (WiFi.status() != WL_CONNECTED) {
       digitalWrite(redLEDpin, 0);  // red LED ON für 2 Sekunden
       delay(2000);
       digitalWrite(redLEDpin, 1);    
-      ESP.deepSleep(1000000 * SleepTime);
+      ESP.deepSleep(1000000 * SleepTime); // schlafe für 60 Sekunden und versuche es dann nochmals
       delay(100);
   }    
   timout++;
@@ -63,6 +63,9 @@ while (WiFi.status() != WL_CONNECTED) {
         
   //------------------------------------ Sensoren lesen  -------------------------------------------
 
+    client.setDataSourceName("New_name");
+    client.setDataSourceLabel("New_label");
+    
     pinMode(Sensor_PIN, INPUT);
     int offen = digitalRead(Sensor_PIN);
     Serial.println(offen);
@@ -72,10 +75,11 @@ while (WiFi.status() != WL_CONNECTED) {
     float lux = analogRead(A0);
     Serial.println(lux);
     client.add("Lux", lux);
+    
     client.sendAll(true);
     Serial.println();
     Serial.println("Going into deep sleep");
-    ESP.deepSleep(0, WAKE_RFCAL); //gehe schlafen
+    ESP.deepSleep(0, WAKE_RFCAL); //gehe schlafen für immer
     delay(100);
 }
 
