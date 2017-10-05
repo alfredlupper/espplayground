@@ -20,6 +20,9 @@ int timout = 0;
 Ubidots client(TOKEN);
 
 void setup() {
+    
+  //------------------------------------ Init Serial -----------------------------------------------------------------------
+
     Serial.begin(115200);
     Serial.setTimeout(2000);
     // Wait for serial to initialize.
