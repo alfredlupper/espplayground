@@ -12,6 +12,7 @@
 #define greenLEDpin D6   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
 #define redLEDpin D8   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
 #define Sensor_PIN 5 // Pin der an Reedkontackt angeschlossen ist
+#define Light_PIN A0
 
 #define Maxtimeout 60
 
@@ -63,20 +64,21 @@ while (WiFi.status() != WL_CONNECTED) {
         
   //------------------------------------ Sensoren lesen  -------------------------------------------
 
-    client.setDataSourceName("New_name");
-    client.setDataSourceLabel("New_label");
+    client.setDataSourceName("Garage");
+    client.setDataSourceLabel("GarageESP");
     
     pinMode(Sensor_PIN, INPUT);
     int offen = digitalRead(Sensor_PIN);
     Serial.println(offen);
-    client.add("tor", offen);
 
-    pinMode(A0, INPUT);
+    pinMode(Light_PIN, INPUT);
     float lux = analogRead(A0);
     Serial.println(lux);
-    client.add("Lux", lux);
     
+    client.add("tor", offen);
+    client.add("lux", lux);
     client.sendAll(true);
+    
     Serial.println();
     Serial.println("Going into deep sleep");
     ESP.deepSleep(0, WAKE_RFCAL); //gehe schlafen für immer
