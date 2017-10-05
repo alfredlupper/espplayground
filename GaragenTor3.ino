@@ -9,6 +9,10 @@
 
 #define TOKEN "A1E-i8eODe5VEDhD9wt8T4gYDIFd2IrxEF"
 
+#define greenLEDpin D6   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
+#define redLEDpin D8   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
+#define Maxtimout 60
+
 const int sleepSeconds = 60;
 int timout = 0;
 
@@ -24,21 +28,36 @@ void setup() {
     Serial.println("I'm awake.");
 
   //------------------------------------ Im Station Modus mit Netzwerk verbinden -------------------------------------------
-  
-    client.wifiConnection(SSID, PASS);
-    delay(100);
+ 
+WiFi.begin(SSID, PASS);
 
-  while (WiFi.status() != WL_CONNECTED)     // Solange nicht verbunden versuche 6S zu verbinden
-  {
-    //----------------------------------------------- Timeout abgelaufen ---------------------------------------
-    if  (timout > 60)         // Wenn Anmeldung nicht möglich
-    {
-      Serial.println("Timeout");
-      ESP.deepSleep(sleepSeconds * 1000000); // sleepbfor 60 seconds
+while (WiFi.status() != WL_CONNECTED) {
+  delay(500);
+  Serial.print(".");
+  
+  if  (timout > Maxtimeout) {
+      Serial.println(F("WiFi failed to connect"));
+      pinMode(redLEDpin, OUTPUT);
+      digitalWrite(redLEDpin, 0);  // red LED ON für 2 Sekunden
+      delay(2000);
+      digitalWrite(redLEDpin, 1);    
+      ESP.deepSleep(1000000 * SleepTime);
       delay(100);
-    }                           // End timeout
-    timout++;
-  }
+  }    
+  timout++;
+ }
+    
+      WiFi.setAutoReconnect(true);
+      Serial.println(F("WiFi connected"));
+      Serial.println(F("IP address: "));
+      Serial.println(WiFi.localIP());
+      
+      pinMode(greenLEDpin, OUTPUT);
+      digitalWrite(greenLEDpin, 0);  // green LED ON für 2 Sekunden
+      delay(2000);
+      digitalWrite(greenLEDpin, 1);
+        
+  //------------------------------------ Sensoren lesen  -------------------------------------------
 
     pinMode(Sensor_PIN, INPUT);
     int offen = digitalRead(Sensor_PIN);
