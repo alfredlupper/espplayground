@@ -64,8 +64,8 @@ while (WiFi.status() != WL_CONNECTED) {
         
   //------------------------------------ Sensoren lesen  -------------------------------------------
 
-    client.setDataSourceName("Garage");
-    client.setDataSourceLabel("Garage");
+    client.setDataSourceName("garage");
+    client.setDataSourceLabel("garage");
     
     pinMode(Sensor_PIN, INPUT);
     int offen = digitalRead(Sensor_PIN);
