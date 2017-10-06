@@ -17,7 +17,7 @@
 #define Maxtimeout 60
 
 const int sleepSeconds = 60;
-int timout = 0;
+int timeout = 0;
 
 Ubidots client(TOKEN);
 
@@ -28,7 +28,7 @@ void setup() {
     Serial.begin(115200);
     Serial.setTimeout(2000);
     // Wait for serial to initialize.
-     while(!Serial) { }
+    while(!Serial) { }
     Serial.println();
     Serial.println("I'm awake.");
 
@@ -40,16 +40,16 @@ while (WiFi.status() != WL_CONNECTED) {
   delay(500);
   Serial.print(".");
   
-  if  (timout > Maxtimeout) {
+  if  (timeout > Maxtimeout) {
       Serial.println(F("WiFi failed to connect"));
       pinMode(redLEDpin, OUTPUT);
       digitalWrite(redLEDpin, 0);  // red LED ON für 2 Sekunden
-      delay(2000);
+      delay(1000);
       digitalWrite(redLEDpin, 1);    
       ESP.deepSleep(1000000 * SleepTime); // schlafe für 60 Sekunden und versuche es dann nochmals
       delay(100);
   }    
-  timout++;
+  timeout++;
  }
     
       WiFi.setAutoReconnect(true);
@@ -59,13 +59,13 @@ while (WiFi.status() != WL_CONNECTED) {
       
       pinMode(greenLEDpin, OUTPUT);
       digitalWrite(greenLEDpin, 0);  // green LED ON für 2 Sekunden
-      delay(2000);
+      delay(1000);
       digitalWrite(greenLEDpin, 1);
         
   //------------------------------------ Sensoren lesen  -------------------------------------------
 
     client.setDataSourceName("Garage");
-    client.setDataSourceLabel("GarageESP");
+    client.setDataSourceLabel("Garage");
     
     pinMode(Sensor_PIN, INPUT);
     int offen = digitalRead(Sensor_PIN);
