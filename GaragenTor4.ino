@@ -11,7 +11,7 @@
 
 #define greenLEDpin D6   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
 #define redLEDpin D8   // LED zum Blinken. Bei ESP-07 Pin 2. Bei ESP-01 Pin 1
-#define Sensor_PIN 5 // Pin der an Reedkontackt angeschlossen ist
+#define Sensor_PIN D1 // Pin der an Reedkontackt angeschlossen ist
 #define Light_PIN A0
 
 #define Maxtimeout 20
