@@ -2,3 +2,12 @@ http://pv.lupper.de/solar_api/v1/GetInverterRealtimeData.cgi?Scope=System
 $$.Body.Data.PAC.Values[1];
  mosquitto_sub -h fredlupper.ddns.net -t zway/aimos/#
 sudo aptitude install mosquitto
+
+
+wget https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-armv6l.tar.gz 
+tar -xvf node-v4.0.0-linux-armv6l.tar.gz 
+cd node-v4.0.0-linux-armv6l
+
+Copy to /usr/local
+
+sudo cp -R * /usr/local/
